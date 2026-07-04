@@ -1,0 +1,73 @@
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource-variable/jetbrains-mono';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg font-body text-fg antialiased;
+    /* oversized/overhanging display type must never cause a horizontal scrollbar */
+    overflow-x: clip;
+  }
+
+  ::selection {
+    @apply bg-accent text-bg;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-bg;
+  }
+
+  /* anchor targets land below the fixed navbar */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  /* hide the native cursor only while the custom cursor is on screen */
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    cursor: none !important;
+  }
+
+  /* recommended Lenis styles — CSS smooth scroll must yield to it */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  /* mono uppercase label used for section indexes, nav, meta */
+  .label-mono {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-muted;
+  }
+}
+
+/* Safety net on top of the useReducedMotion checks in components:
+   kill every animation/transition for users who ask for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
