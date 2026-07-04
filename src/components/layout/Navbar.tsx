@@ -8,9 +8,8 @@ import { content } from '../../data/content'
 
 const NAV_ITEMS = [
   { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
+  { label: 'Work', href: '#work' },
   { label: 'Skills', href: '#skills' },
-  { label: 'Experience', href: '#experience' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -84,7 +83,9 @@ export default function Navbar({ lenis }: NavbarProps) {
           aria-label={`${content.profile.name} — back to top`}
           onClick={(e) => scrollToAnchor(e, '#top')}
         >
-          DB<span className="text-accent">©</span>
+          <span className="font-display text-lg italic tracking-tight text-fg">
+            {content.profile.name}
+          </span>
         </MagneticLink>
 
         {/* desktop links */}

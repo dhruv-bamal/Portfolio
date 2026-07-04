@@ -5,10 +5,10 @@ import GrainOverlay from './components/ui/GrainOverlay'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 import Hero from './components/sections/Hero'
+import MarqueeBand from './components/sections/MarqueeBand'
 import About from './components/sections/About'
-import Projects from './components/sections/Projects'
+import Work from './components/sections/Work'
 import Skills from './components/sections/Skills'
-import Experience from './components/sections/Experience'
 import Contact from './components/sections/Contact'
 
 export default function App() {
@@ -25,10 +25,10 @@ export default function App() {
       <Navbar lenis={lenis} />
       <main id="main">
         <Hero />
+        <MarqueeBand />
         <About />
-        <Projects />
+        <Work />
         <Skills />
-        <Experience />
         <Contact />
       </main>
       <Footer lenis={lenis} />

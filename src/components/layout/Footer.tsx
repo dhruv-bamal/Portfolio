@@ -8,6 +8,8 @@ interface FooterProps {
 }
 
 export default function Footer({ lenis }: FooterProps) {
+  const { profile } = content
+
   const backToTop = (e: MouseEvent) => {
     if (!lenis) return
     e.preventDefault()
@@ -16,11 +18,16 @@ export default function Footer({ lenis }: FooterProps) {
 
   return (
     <footer className="border-t border-line">
-      <div className="label-mono mx-auto flex max-w-[90rem] flex-wrap items-center justify-between gap-4 px-6 py-8 md:px-10 lg:px-16">
+      <div className="label-mono mx-auto flex max-w-[90rem] flex-wrap items-center justify-between gap-x-8 gap-y-3 px-6 py-8 md:px-10 lg:px-16">
         <p>
-          © {new Date().getFullYear()} {content.profile.name}
+          © {new Date().getFullYear()} {profile.name}
         </p>
-        <p aria-hidden="true">{content.profile.location}</p>
+        <p>{profile.location}</p>
+        {profile.phone && (
+          <a href={`tel:${profile.phone.replace(/\s/g, '')}`} className="transition-colors hover:text-accent">
+            {profile.phone}
+          </a>
+        )}
         <MagneticLink href="#top" className="label-mono !text-fg/80 hover:!text-accent" onClick={backToTop}>
           Back to top ↑
         </MagneticLink>

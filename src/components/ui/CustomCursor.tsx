@@ -3,18 +3,43 @@ import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useCursor } from '../../hooks/useCursorState'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
-const ringVariants = {
-  default: { width: 36, height: 36, opacity: 0.5 },
-  hover: { width: 64, height: 64, opacity: 0.9 },
-  text: { width: 4, height: 48, opacity: 0.9 },
-  view: { width: 88, height: 88, opacity: 1 },
+// one morphing element: lime dot → soft ring over interactive targets
+const variants = {
+  default: {
+    width: 10,
+    height: 10,
+    opacity: 1,
+    backgroundColor: '#D4FF3A',
+    borderColor: 'rgba(212, 255, 58, 0)',
+  },
+  hover: {
+    width: 48,
+    height: 48,
+    opacity: 0.9,
+    backgroundColor: 'rgba(212, 255, 58, 0.08)',
+    borderColor: 'rgba(212, 255, 58, 0.9)',
+  },
+  text: {
+    width: 4,
+    height: 44,
+    opacity: 0.9,
+    backgroundColor: '#D4FF3A',
+    borderColor: 'rgba(212, 255, 58, 0)',
+  },
+  view: {
+    width: 88,
+    height: 88,
+    opacity: 1,
+    backgroundColor: '#D4FF3A',
+    borderColor: 'rgba(212, 255, 58, 0)',
+  },
 }
 
 /**
- * Custom cursor: an accent dot plus a spring-trailing ring that morphs
- * per hover target ('view' becomes a filled "VIEW" badge over project
- * cards). Mounted only on fine-pointer devices without reduced motion;
- * the native cursor is hidden via a body class only while this is active.
+ * Custom cursor: a small accent dot trailing on a spring that scales and
+ * softens into a ring over links, and becomes a filled "View" badge over
+ * project blocks. Mounted only on fine-pointer devices without reduced
+ * motion; the native cursor is hidden via a body class only while active.
  */
 export default function CustomCursor() {
   const { variant } = useCursor()
@@ -24,8 +49,8 @@ export default function CustomCursor() {
 
   const mx = useMotionValue(-100)
   const my = useMotionValue(-100)
-  const ringX = useSpring(mx, { stiffness: 400, damping: 40, mass: 0.8 })
-  const ringY = useSpring(my, { stiffness: 400, damping: 40, mass: 0.8 })
+  const x = useSpring(mx, { stiffness: 500, damping: 38, mass: 0.6 })
+  const y = useSpring(my, { stiffness: 500, damping: 38, mass: 0.6 })
 
   useEffect(() => {
     const finePointer = window.matchMedia('(pointer: fine)')
@@ -61,24 +86,15 @@ export default function CustomCursor() {
 
   return (
     <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-50">
-      {/* dot — tracks the pointer exactly */}
       <motion.div
-        className="absolute h-1.5 w-1.5 rounded-full bg-accent"
-        style={{ x: mx, y: my, translateX: '-50%', translateY: '-50%' }}
-        animate={{ opacity: visible && variant !== 'view' ? 1 : 0 }}
-        transition={{ duration: 0.15 }}
-      />
-      {/* ring — trails on a spring and morphs per variant */}
-      <motion.div
-        className="absolute flex items-center justify-center rounded-full border border-fg/60"
-        style={{ x: ringX, y: ringY, translateX: '-50%', translateY: '-50%' }}
+        className="absolute flex items-center justify-center rounded-full border"
+        style={{ x, y, translateX: '-50%', translateY: '-50%' }}
         animate={{
-          ...ringVariants[variant],
-          opacity: visible ? ringVariants[variant].opacity : 0,
-          backgroundColor: variant === 'view' ? '#C9F24E' : 'rgba(201, 242, 78, 0)',
+          ...variants[variant],
+          opacity: visible ? variants[variant].opacity : 0,
           borderRadius: variant === 'text' ? 2 : 999,
         }}
-        transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
       >
         <motion.span
           className="font-mono text-[10px] uppercase tracking-[0.2em] text-bg"

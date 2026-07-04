@@ -8,13 +8,8 @@ export const content = {
   profile: {
     name: 'Dhruv Bamal',
     role: 'Junior Full Stack Developer',
-    taglines: [
-      'Full Stack Developer',
-      'React + TypeScript',
-      'Node.js & Express',
-      'Hackathon Winner',
-      'B.Tech CSE 2027',
-    ],
+    subtitle: 'Building production React + TypeScript apps from Ghaziabad, India.',
+    taglines: ['TypeScript', 'React 18', 'Node.js', 'Express', 'Vite', 'SQL'],
     bio: [
       'I am a Computer Science undergraduate (B.Tech, 2027) and hackathon-winning developer who ships real software — most recently a production React + TypeScript web application with a clean, API-ready architecture.',
       'I work across the stack: TypeScript and React on the front, Node.js, Express, and SQL behind it. I care about typed component hierarchies and logic layers that stay decoupled from the UI, so the code is ready to grow.',
@@ -22,7 +17,8 @@ export const content = {
     ],
     location: 'Ghaziabad, India',
     email: 'bamaldhruv1105@gmail.com',
-    availability: 'Seeking full-stack internship',
+    phone: '+91 98105 05413',
+    availability: 'Available for internships',
   },
   socials: [
     { label: 'GitHub', url: 'https://github.com/dhruv-bamal' },

@@ -1,12 +1,15 @@
 export interface Profile {
   name: string
   role: string
-  /** rotated/marqueed role titles */
+  /** one-line supporting sentence under the hero headline */
+  subtitle?: string
+  /** items for the marquee ticker bands */
   taglines: string[]
   /** paragraphs for the About section */
   bio: string[]
   location: string
   email: string
+  phone?: string
   resumeUrl?: string
   /** e.g. "Open to work — Summer 2026" */
   availability?: string

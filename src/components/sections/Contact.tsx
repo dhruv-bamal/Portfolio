@@ -7,27 +7,25 @@ export default function Contact() {
   const { profile, socials } = content
 
   return (
-    <Section id="contact" index={5} title="Contact">
-      <div className="flex flex-col items-start gap-12 md:gap-16">
-        <RevealText
-          as="p"
-          className="max-w-3xl font-display text-display-md font-medium leading-tight"
-        >
-          Have a project in mind, a role to fill, or just want to talk shop?
-        </RevealText>
+    <Section id="contact" index={4} title="Contact">
+      <div className="flex flex-col items-start gap-14 md:gap-20">
+        <h3 className="max-w-4xl font-display text-display-lg">
+          <RevealText as="span">Let's build</RevealText>{' '}
+          <RevealText as="span" className="italic text-accent" delay={0.2}>
+            something.
+          </RevealText>
+        </h3>
 
-        {/* the one giant CTA */}
+        {/* oversized email with underline-draw */}
         <MagneticLink
           href={`mailto:${profile.email}`}
-          strength={0.2}
-          className="group font-display text-display-lg font-bold uppercase leading-none"
+          strength={0.15}
+          className="underline-draw max-w-full break-all font-display text-[clamp(1.4rem,4.5vw,4rem)] leading-tight text-fg transition-colors duration-300 hover:text-accent"
         >
-          <span className="block max-w-full break-all border-b-2 border-line pb-3 transition-colors duration-300 group-hover:border-accent group-hover:text-accent">
-            Let's talk
-          </span>
+          {profile.email}
         </MagneticLink>
 
-        <ul aria-label="Social links" className="flex flex-wrap gap-x-8 gap-y-3">
+        <ul aria-label="Social links" className="flex flex-wrap gap-x-10 gap-y-3">
           {socials.map((social) => (
             <li key={social.label}>
               <MagneticLink

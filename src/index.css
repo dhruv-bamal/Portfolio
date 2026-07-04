@@ -1,6 +1,7 @@
-@import '@fontsource-variable/space-grotesk';
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
+@import '@fontsource/instrument-serif';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource-variable/inter-tight';
+@import '@fontsource-variable/inter-tight/wght-italic.css';
 @import '@fontsource-variable/jetbrains-mono';
 
 @tailwind base;
@@ -54,6 +55,19 @@
   /* mono uppercase label used for section indexes, nav, meta */
   .label-mono {
     @apply font-mono text-xs uppercase tracking-[0.2em] text-muted;
+  }
+
+  /* left-to-right underline draw on hover/focus (contact email CTA) */
+  .underline-draw {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: left 0 bottom 0.02em;
+    background-size: 0% 0.045em;
+    transition: background-size 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .underline-draw:hover,
+  .underline-draw:focus-visible {
+    background-size: 100% 0.045em;
   }
 }
 
