@@ -35,9 +35,25 @@ export const content = {
       description:
         'An expense tracker with auto-categorization, recurring-subscription detection, and budget-limit alerts — built on a typed component hierarchy with the logic layer fully decoupled from the UI for future Node.js API integration.',
       tags: ['React 18', 'TypeScript', 'Vite', 'CSS Modules', 'Vercel'],
-      image: '/projects/money-tracker.svg',
-      imageAlt: 'Money Tracker expense dashboard with categorized spending and budget alerts',
+      image: '/projects/money-tracker.png',
+      imageAlt:
+        'Money Tracker dashboard showing monthly budget usage, spending by category, and detected subscriptions',
       liveUrl: 'https://money-tracker-drab-tau.vercel.app/',
+      repoUrl: 'https://github.com/dhruv-bamal/money-tracker',
+      year: 2026,
+      featured: true,
+    },
+    {
+      id: 'cyber-death',
+      title: 'Cyber Death',
+      description:
+        'A browser-based interactive storytelling game in vanilla JavaScript — branching narrative logic, timed decisions, and multiple outcome paths in a custom cyberpunk UI with audio and CSS animations, shipped dependency-free.',
+      tags: ['JavaScript', 'HTML5', 'CSS3', 'Vercel'],
+      image: '/projects/cyber-death.jpg',
+      imageAlt:
+        'Cyber Death title screen — Helios Protocol, a cyberpunk story where an AI controls every system on Earth',
+      liveUrl: 'https://cyber-death.vercel.app/',
+      repoUrl: 'https://github.com/dhruv-bamal/cyber-death',
       year: 2026,
       featured: true,
     },
@@ -65,17 +81,23 @@ export const content = {
       id: 'csi-hackathon',
       company: 'CSI Hackathon (TechStacy)',
       role: '1st Position',
-      start: '2026-02',
-      end: '2026-02',
+      start: '2026-03',
+      end: '2026-03',
       summary:
         'Won first place in an off-campus hackathon competition among 100+ participants across 50+ teams.',
-      highlights: [],
+      highlights: [
+        'Multiple branching storylines with unique endings',
+        'Interactive decision-making and time-sensitive quick-time events',
+        'Story-integrated mini-games that directly impact outcomes',
+        'Custom-designed cyberpunk-inspired UI/UX',
+        'Dynamic gameplay where every choice matters',
+      ],
     },
     {
       id: 'srm-btech',
       company: 'SRM Institute of Science and Technology, Delhi NCR',
       role: 'B.Tech, Computer Science & Engineering',
-      start: '2023-08',
+      start: '2023-05',
       end: null,
       summary: 'Computer Science and Engineering undergraduate, Class of 2027 (expected) — CGPA 7.35.',
       highlights: [
