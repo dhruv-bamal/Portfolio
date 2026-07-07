@@ -36,9 +36,11 @@ function WorkBlock({ project }: { project: Project }) {
           height={800}
           loading="lazy"
           className={clsx(
+            // bespoke color banners (not screenshots) — shown in full color at rest;
+            // hover settles the subtle scale for feedback without hiding color on mobile
             'aspect-video w-full object-cover object-top',
             !reduced &&
-              'scale-[1.02] grayscale transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100 group-hover:grayscale-0',
+              'scale-[1.03] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100',
           )}
         />
       </a>

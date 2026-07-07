@@ -9,11 +9,11 @@ export const content = {
     name: 'Dhruv Bamal',
     role: 'Junior Full Stack Developer',
     subtitle: 'Building production React + TypeScript apps from Ghaziabad, India.',
-    taglines: ['TypeScript', 'React 18', 'Node.js', 'Express', 'Vite', 'SQL'],
+    taglines: ['TypeScript', 'React 18', 'Node.js', 'Express', 'PostgreSQL', 'JWT'],
     bio: [
-      'I am a Computer Science undergraduate (B.Tech, 2027) and hackathon-winning developer who ships real software — most recently a production React + TypeScript web application with a clean, API-ready architecture.',
-      'I work across the stack: TypeScript and React on the front, Node.js, Express, and SQL behind it. I care about typed component hierarchies and logic layers that stay decoupled from the UI, so the code is ready to grow.',
-      'Right now I am looking for a full-stack development internship where I can contribute to a real engineering team while deepening my backend skills alongside strong frontend fundamentals.',
+      'I am a Computer Science undergraduate (B.Tech, 2027) and hackathon-winning developer seeking a full-stack development internship or entry-level role.',
+      'I have built and shipped a production React + TypeScript frontend alongside a secure Node.js/Express REST API with JWT authentication and PostgreSQL — covering the stack end to end.',
+      'I am proficient in TypeScript, JavaScript, SQL, and modern web tooling, with a track record of independently designing, building, and deploying complete applications.',
     ],
     location: 'Ghaziabad, India',
     email: 'bamaldhruv1105@gmail.com',
@@ -29,27 +29,26 @@ export const content = {
       id: 'money-tracker',
       title: 'Money Tracker',
       description:
-        'An expense tracker with auto-categorization, recurring-subscription detection, and budget-limit alerts — built on a typed component hierarchy with the logic layer fully decoupled from the UI for future Node.js API integration.',
+        'A full-stack-ready expense tracker in React 18 and TypeScript with auto-categorization, recurring-subscription detection, and budget-limit alerts — a typed hierarchy of 8 reusable components over a decoupled logic layer, shipped to Vercel via GitHub-triggered CI/CD.',
       tags: ['React 18', 'TypeScript', 'Vite', 'CSS Modules', 'Vercel'],
-      image: '/projects/money-tracker.png',
+      image: '/projects/money-tracker.svg',
       imageAlt:
-        'Money Tracker dashboard showing monthly budget usage, spending by category, and detected subscriptions',
+        'Animated Money Tracker banner — bouncing rupee coins dropping onto a rising budget bar',
       liveUrl: 'https://money-tracker-drab-tau.vercel.app/',
       repoUrl: 'https://github.com/dhruv-bamal/money-tracker',
       year: 2026,
       featured: true,
     },
     {
-      id: 'cyber-death',
-      title: 'Cyber Death',
+      id: 'money-tracker-api',
+      title: 'Money Tracker API',
       description:
-        'A browser-based interactive storytelling game in vanilla JavaScript — branching narrative logic, timed decisions, and multiple outcome paths in a custom cyberpunk UI with audio and CSS animations, shipped dependency-free.',
-      tags: ['JavaScript', 'HTML5', 'CSS3', 'Vercel'],
-      image: '/projects/cyber-death.jpg',
+        'A secure REST API for the Money Tracker frontend — Node.js and Express with structured routing, custom middleware, and centralized error handling, plus JWT auth and bcrypt hashing enforcing per-user access over PostgreSQL via Supabase.',
+      tags: ['Node.js', 'Express', 'PostgreSQL', 'Supabase', 'JWT'],
+      image: '/projects/money-tracker-api.svg',
       imageAlt:
-        'Cyber Death title screen — Helios Protocol, a cyberpunk story where an AI controls every system on Earth',
-      liveUrl: 'https://cyber-death.vercel.app/',
-      repoUrl: 'https://github.com/dhruv-bamal/cyber-death',
+        'Animated Money Tracker API banner — a request pulsing from client to server to database and returning 200 OK',
+      repoUrl: 'https://github.com/dhruv-bamal/money-tracker-api',
       year: 2026,
       featured: true,
     },
@@ -57,19 +56,27 @@ export const content = {
   skillGroups: [
     {
       category: 'Languages',
-      skills: ['TypeScript', 'JavaScript', 'SQL', 'Java', 'C++', 'C', 'HTML5', 'CSS3'],
+      skills: ['TypeScript', 'JavaScript', 'SQL', 'HTML5', 'CSS3', 'Java (Basics)', 'C (Basics)', 'C++'],
     },
     {
       category: 'Frontend',
-      skills: ['React 18', 'CSS Modules', 'Component & State Architecture', 'Responsive UI'],
+      skills: ['React 18', 'Component & State Architecture', 'CSS Modules', 'Responsive UI Design'],
     },
     {
       category: 'Backend',
-      skills: ['Node.js', 'Express', 'REST APIs'],
+      skills: ['Node.js', 'Express.js', 'REST API Design', 'JWT Authentication', 'bcrypt'],
+    },
+    {
+      category: 'Databases',
+      skills: ['PostgreSQL', 'Supabase'],
+    },
+    {
+      category: 'Data Structures & Algorithms',
+      skills: ['Problem-solving in C++'],
     },
     {
       category: 'Tools & Deployment',
-      skills: ['Vite', 'Git & GitHub', 'Vercel', 'CI/CD'],
+      skills: ['Git', 'GitHub', 'Vite', 'Vercel', 'CI/CD', 'Thunder Client'],
     },
   ],
   experience: [
@@ -81,13 +88,7 @@ export const content = {
       end: '2026-03',
       summary:
         'Won first place in an off-campus hackathon competition among 100+ participants across 50+ teams.',
-      highlights: [
-        'Multiple branching storylines with unique endings',
-        'Interactive decision-making and time-sensitive quick-time events',
-        'Story-integrated mini-games that directly impact outcomes',
-        'Custom-designed cyberpunk-inspired UI/UX',
-        'Dynamic gameplay where every choice matters',
-      ],
+      highlights: [],
     },
     {
       id: 'srm-btech',
@@ -98,7 +99,7 @@ export const content = {
       summary: 'Computer Science and Engineering undergraduate, Class of 2027 (expected) — CGPA 7.35.',
       highlights: [
         'Designed and shipped a production React + TypeScript web application alongside coursework.',
-        'Comfortable across the stack with JavaScript, Node.js/Express, and SQL.',
+        'Built a secure Node.js/Express REST API with JWT auth and PostgreSQL, covering the stack end to end.',
       ],
     },
   ],
