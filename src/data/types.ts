@@ -10,6 +10,8 @@ export interface Profile {
   location: string
   email: string
   phone?: string
+  /** short closing line rendered in the footer */
+  motto?: string
   resumeUrl?: string
   /** e.g. "Open to work — Summer 2026" */
   availability?: string

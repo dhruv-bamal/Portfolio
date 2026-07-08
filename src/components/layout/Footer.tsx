@@ -22,6 +22,7 @@ export default function Footer({ lenis }: FooterProps) {
         <p>
           © {new Date().getFullYear()} {profile.name}
         </p>
+        {profile.motto && <p className="!text-accent">{profile.motto}</p>}
         <p>{profile.location}</p>
         {profile.phone && (
           <a href={`tel:${profile.phone.replace(/\s/g, '')}`} className="transition-colors hover:text-accent">

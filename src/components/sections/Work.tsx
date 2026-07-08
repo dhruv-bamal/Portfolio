@@ -7,65 +7,82 @@ import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import { content } from '../../data/content'
 import type { Project } from '../../data/types'
 
-function WorkBlock({ project }: { project: Project }) {
+interface WorkCardProps {
+  project: Project
+  /** position in the grid — drives span, offset, and tilt direction */
+  index: number
+}
+
+function WorkCard({ project, index }: WorkCardProps) {
   const cursor = useCursorState('view')
   const reduced = usePrefersReducedMotion()
   const primaryUrl = project.liveUrl ?? project.repoUrl
+  const odd = index % 2 === 1
 
   return (
-    <motion.article
-      className="group"
-      initial={reduced ? false : { opacity: 0, y: 56 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+    /* tilt lives here as pure CSS; the entrance animation lives on the inner
+       motion.div — framer's inline transform must not override the rotate */
+    <article
+      className={clsx(
+        'group',
+        // bento: alternating wide/narrow cards, odd ones pushed down
+        odd ? 'lg:col-span-5 lg:mt-28' : 'lg:col-span-7',
+        // playful resting tilt that straightens on hover (desktop only)
+        !reduced && [
+          'transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]',
+          odd ? 'lg:-rotate-[0.9deg]' : 'lg:rotate-[1.2deg]',
+          'lg:hover:rotate-0',
+        ],
+      )}
     >
-      {/* edge-to-edge image block; desaturated until hover */}
-      <a
-        href={primaryUrl}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`${project.title} — open ${project.liveUrl ? 'live demo' : 'source code'}`}
-        className="block overflow-hidden bg-surface"
-        {...cursor}
+      <motion.div
+        initial={reduced ? false : { opacity: 0, y: 48 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.8, delay: reduced ? 0 : 0.12 * index, ease: [0.22, 1, 0.36, 1] }}
       >
-        <img
-          src={project.image}
-          alt={project.imageAlt}
-          width={1200}
-          height={800}
-          loading="lazy"
-          className={clsx(
-            // bespoke color banners (not screenshots) — shown in full color at rest;
-            // hover settles the subtle scale for feedback without hiding color on mobile
-            'aspect-video w-full object-cover object-top',
-            !reduced &&
-              'scale-[1.03] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100',
-          )}
-        />
-      </a>
+        <a
+          href={primaryUrl}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${project.title} — open ${project.liveUrl ? 'live demo' : 'source code'}`}
+          className="block overflow-hidden rounded-lg border border-line bg-surface"
+          {...cursor}
+        >
+          <img
+            src={project.image}
+            alt={project.imageAlt}
+            width={1200}
+            height={900}
+            loading="lazy"
+            className={clsx(
+              // bespoke color banners (not screenshots) — full color at rest;
+              // hover settles the subtle scale so the motion reads on mobile too
+              'aspect-[4/3] w-full object-cover object-top',
+              !reduced &&
+                'scale-[1.03] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100',
+            )}
+          />
+        </a>
 
-      <div className="mt-6 grid gap-6 lg:grid-cols-12">
-        <div className="lg:col-span-6">
-          <div className="flex items-baseline gap-4">
-            <h3 className="font-display text-display-md transition-colors duration-300 group-hover:text-accent">
+        <div className="mt-5">
+          <div className="flex items-baseline justify-between gap-4">
+            <h3 className="font-display text-2xl transition-colors duration-300 group-hover:text-accent md:text-3xl">
               {project.title}
             </h3>
-            <span className="label-mono">{project.year}</span>
+            <span className="label-mono shrink-0">{project.year}</span>
           </div>
-          <ul aria-label="Technologies" className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+          <ul aria-label="Technologies" className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
             {project.tags.map((tag) => (
-              <li key={tag} className="label-mono !text-fg/60">
+              <li key={tag} className="label-mono !text-[0.65rem] !text-fg/55">
                 {tag}
               </li>
             ))}
           </ul>
-        </div>
-        <div className="lg:col-span-5 lg:col-start-8">
-          <p className="text-base font-light leading-relaxed text-muted md:text-lg">
+          <p className="mt-3 line-clamp-3 max-w-prose text-sm font-light leading-relaxed text-muted md:text-base">
             {project.description}
           </p>
-          <div className="mt-5 flex gap-8">
+          <div className="mt-4 flex gap-7">
             {project.liveUrl && (
               <MagneticLink
                 href={project.liveUrl}
@@ -86,17 +103,17 @@ function WorkBlock({ project }: { project: Project }) {
             )}
           </div>
         </div>
-      </div>
-    </motion.article>
+      </motion.div>
+    </article>
   )
 }
 
 export default function Work() {
   return (
     <Section id="work" index={2} title="Selected Work">
-      <div className="space-y-24 md:space-y-36">
-        {content.projects.map((project) => (
-          <WorkBlock key={project.id} project={project} />
+      <div className="grid gap-x-10 gap-y-16 lg:grid-cols-12">
+        {content.projects.map((project, i) => (
+          <WorkCard key={project.id} project={project} index={i} />
         ))}
       </div>
     </Section>
