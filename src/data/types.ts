@@ -34,6 +34,8 @@ export interface Project {
   imageAlt: string
   liveUrl?: string
   repoUrl?: string
+  /** second repo for projects split into frontend + backend */
+  apiRepoUrl?: string
   year: number
   /** featured projects get the large asymmetric layout */
   featured: boolean

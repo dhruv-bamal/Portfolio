@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { CursorProvider } from './context/CursorContext'
 import { useLenis } from './hooks/useLenis'
 import CustomCursor from './components/ui/CustomCursor'
@@ -13,6 +14,21 @@ import Contact from './components/sections/Contact'
 
 export default function App() {
   const lenis = useLenis()
+
+  // debug hook (pairs with ?beat=): ?shot=<section-id> translates that section
+  // into view for headless screenshots. Combine with a forced
+  // prefers-reduced-motion so in-view reveals render instantly.
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get('shot')
+    if (!id) return
+    const timer = setTimeout(() => {
+      const el = document.getElementById(id)
+      if (el) {
+        document.body.style.transform = `translateY(${-el.getBoundingClientRect().top + 40}px)`
+      }
+    }, 400)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <CursorProvider>
